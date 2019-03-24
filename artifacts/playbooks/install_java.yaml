@@ -1,0 +1,59 @@
+---
+- name: Install Oracle Java version 8
+  hosts: java
+  become: true
+  
+  tasks:
+  - name: Install dependencies
+    become: yes
+    apt:
+      name: "{{ packages }}"  
+    vars:
+      packages:    
+      - software-properties-common
+      - dirmngr
+      state: latest 
+ 
+  - name: Install add-apt-repostory
+    become: yes
+    apt: name=software-properties-common state=latest
+ 
+  - name: Add Oracle Java Repository
+    become: yes
+    apt_repository: 
+      repo: deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main
+      state: present
+ 
+  - name: Add an apt key by id from a keyserver
+    become: yes
+    apt_key:
+      keyserver: keyserver.ubuntu.com
+      id: EEA14886
+ 
+  - name: Accept Java 8 License
+    become: yes
+    debconf: name='oracle-java8-installer' question='shared/accepted-oracle-license-v1-1' value='true' vtype='select'
+ 
+  - name: update cache and ignore errors in case of problems
+    become: yes
+    apt: update_cache=yes
+    ignore_errors: yes
+ 
+  - name: purge java 8 installer - to avoid problems if installation is repeated
+    become: yes
+    apt: 
+      name: oracle-java8-installer
+      purge: yes
+      state: absent
+       
+  - name: Install Oracle Java 8
+    become: yes
+    apt:
+      name: "{{ packages }}"  
+    vars:
+      packages:    
+      - ca-certificates
+      - oracle-java8-installer
+      - oracle-java8-set-default
+      state: latest 
+

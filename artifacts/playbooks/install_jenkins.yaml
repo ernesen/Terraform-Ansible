@@ -1,0 +1,41 @@
+# How to install Jenkins using Ansible Version 2018
+# https://awsbloglink.wordpress.com/2018/10/08/how-to-install-jenkins-using-ansible-version-2018/
+---
+- name: Install Jenkins
+  hosts: jenkins-ci
+  gather_facts: false
+  become: true
+  
+  tasks:
+    - name: Ensure the jenkins apt repository key is installed
+      apt_key: 
+        url: https://pkg.jenkins.io/debian-stable/jenkins.io.key
+        state: present
+
+    - name: Ensure the repository is configured
+      apt_repository: 
+        repo: deb https://pkg.jenkins.io/debian-stable binary/ 
+        state: present
+
+    - name: Install Jenkins
+      apt:
+        name: jenkins
+        state: present
+
+    - name: Start & Enable Jenkins
+      service: 
+        name: jenkins
+        state: started
+
+    - name: Sleep for 30 seconds and continue with play
+      wait_for: 
+        timeout: 30
+
+    - name: Get init password Jenkins
+      shell: cat /var/lib/jenkins/secrets/initialAdminPassword
+      changed_when: false
+      register: result
+
+    - name: Print init password Jenkins
+      debug:
+        var: result.stdout
