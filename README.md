@@ -66,6 +66,7 @@ Terraform is used to create, manage, and manipulate infrastructure resources. Ex
 - Ansible will deploy/test application on EC2 instance as CM like Jenkins and GitLab
 
 ![Server Provisioning with Vagrant and VirtualBox](./images/aws_terraform_ans_v1.png)
+
 **FIGURE 1: Server Provisioning with Terraform and Ansible.**
 
 Few things to know before diving in for each to the software used:
@@ -117,6 +118,7 @@ AWS has its deployment tool called CloudFormation, but my obvious choice is for 
 Have aws-cli installed and AWS configured with secret keys then run `aws configure --profile terraform_iam_user` (this is my account, you need to create your  secret key for this to work, in this example my key is <span style="color:grey">*terraform_iam_user*</span>)
 
 ![Create AMI new user in AWS](./images/aws_configure.png)
+
 **FIGURE 2: AWS credentials**
 
 I have uploaded the source code to a GitHub repo at this [location](https://github.com/ernesen/Terraform-Ansible) for you to follow along should you see the need to put this to the test.
@@ -1391,6 +1393,7 @@ aws_instance.jenkins-ci (local-exec): TASK [Install de
 This proves that the automated is fully working!
 
 ![Jenkins installed](./images/jenkins-ci.png)
+
 **FIGURE 3: Jenkins installed with Terraform and Ansible on AWS.**
 
 ## Tear down
