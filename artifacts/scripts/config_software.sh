@@ -9,7 +9,9 @@ mkdir -p "$WORKDIR"
 cd "$WORKDIR"
 
 # Install Terraform 
-curl -f "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" -o "terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
+#curl -f "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" -o "terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
+# previous curl location does not work - I used snap and it worked 
+sudo snap install terraform 
 sudo unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin/
 sudo chmod +x  /usr/local/bin/terraform
 
