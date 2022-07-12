@@ -1447,4 +1447,5 @@ For more details on Ansible and Terraform, refer to the reference section below 
 https://medium.com/@hmalgewatta/setting-up-an-aws-ec2-instance-with-ssh-access-using-terraform-c336c812322f)
 * [Running local-exec provisioner on all EC2 instances after creation](https://stackoverflow.com/questions/44436985/running-local-exec-provisioner-on-all-ec2-instances-after-creation)
 * [Infrastructure as Code](https://www.oreilly.com/library/view/infrastructure-as-code/9781491924334/ch01.html)
+* [Terraform Tutorial – Getting Started With Terraform on AWS](https://spacelift.io/blog/terraform-tutorial)
 
